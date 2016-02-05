@@ -17,7 +17,7 @@
     <meta name="twitter:description" content="A new publication mechanism for route planning purposes">
     <meta name="twitter:image" content="https://pbs.twimg.com/media/CadhyMRWcAAhhIy.png" />
     <meta name="twitter:url" content="http://linkedconnections.org/" />
-    <link rel="stylesheet" href="stylesheets/index.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="stylesheets/index.css" type="text/css" />
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
     <script src="http://linkedconnections.org/bower_components/leaflet/dist/leaflet.js"></script>
   </head>
@@ -25,8 +25,9 @@
     <h1>An example of how to use Linked Connections for your own purpose</h1>
     <p>Want to know more about <a href="http://linkedconnections.org" target="_blank">Linked Connections and how it works</a>?</p>
     <h2>Example 1: an isochrone map - where can I get in 2 hours time using NMBS/SNCB?</h2>
-    <div id="map_isochrone">
-    </div>
+<!--    <label>Select how long (between 10 and 120 minutes):</label>
+    <input id="timeslider" type="range" min="10" max="120" step="10" value="120"/><br/>-->
+    <div id="map_isochrone"/><br/>
     <script src="http://linkedconnections.org/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="http://linkedconnections.org/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="js/csa.js"></script>

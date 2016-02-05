@@ -8,7 +8,8 @@ $(function(){
 
   //Create our stations list on the basis of the iRail API
   var stations = {};
-  var markers = {
+  var markers = {};
+  /*{
     "8892007" : true,//Gent
     "8891009" : true,//Luik
     "8841004" : true,//Brugge
@@ -18,7 +19,7 @@ $(function(){
     "8866258" : true,//Neuf-Château
     "8866001" : true,//Arlon
     "8812005" : true //Brussel Noord
-  };
+  };*/
   
   $.get("http://api.irail.be/stations.php?format=json", function (stationslist) {
     stationslist.station.forEach(function (station) {
@@ -30,12 +31,12 @@ $(function(){
         '@id' : station['@id'],
         point : new L.LatLng(station.locationY, station.locationX)
       };
-      if (markers[key]) {
+      //if (markers[key]) {
         markers[key] = L.marker([station.locationY, station.locationX]).addTo(map);
         markers[key].on("click", function () {
           handleClick(key, markers[key]);
         });
-      }
+      //}
     });
     
     var startIcon = L.icon({
@@ -56,6 +57,10 @@ $(function(){
     var arrivalStop = "";
     var handleClick = function (station, marker) {
       if (departureStop === "") {
+        for (key in markers) {
+          map.removeLayer(markers[key]);
+        }
+        marker.addTo(map);
         marker.setIcon(startIcon);
         departureStop = station;
         var startTime = new Date("2015-10-01T10:00Z");
@@ -74,7 +79,7 @@ $(function(){
               color: color,
               stroke : true,
               weight: 1,
-              fillOpacity: 0.3,
+              fillOpacity: 0.15,
               fillRule : "nonzero"
             }).addTo(map);
           };
