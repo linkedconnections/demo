@@ -83,13 +83,22 @@ $(function(){
               fillRule : "nonzero"
             }).addTo(map);
           };
+          var colors = ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffff99','#b15928'];
+          var trips = {};
+          var countTrips = 0;
           stream.on('data', function (connection) {
             if (stations[connection.arrivalStop] && stations[connection.departureStop]) {
               connection.arrivalStop = stations[connection.arrivalStop];
               connection.departureStop = stations[connection.departureStop];
               //circle for the isochrone to be drawn
               //drawIsochrone(1.5,"#779050",connection);
-              drawIsochrone(2,"#7d0606",connection);
+              //Keep an occurence of different trips and give a new colour per trip
+              
+              if (!trips[connection['gtfs:trip']['@id']]) {
+                trips[connection['gtfs:trip']['@id']] = countTrips%colors.length;
+                countTrips++;
+              }
+              drawIsochrone(2,colors[trips[connection['gtfs:trip']['@id']]],connection);
               //polyline for the path visualization
               var polyline = new L.Polyline([connection.departureStop.point, connection.arrivalStop.point], {
                 color: '#3b6790',
