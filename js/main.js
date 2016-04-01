@@ -83,7 +83,7 @@ $(function(){
               fillRule : "nonzero"
             }).addTo(map);
           };
-          var colors = ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffff99','#b15928'];
+          var colors = ['#b2182b','#d6604d','#f4a582','#fddbc7','#d1e5f0','#92c5de','#4393c3','#2166ac']
           var trips = {};
           var countTrips = 0;
           stream.on('data', function (connection) {
@@ -91,9 +91,7 @@ $(function(){
               connection.arrivalStop = stations[connection.arrivalStop];
               connection.departureStop = stations[connection.departureStop];
               //circle for the isochrone to be drawn
-              //drawIsochrone(1.5,"#779050",connection);
               //Keep an occurence of different trips and give a new colour per trip
-              
               if (!trips[connection['gtfs:trip']['@id']]) {
                 trips[connection['gtfs:trip']['@id']] = countTrips%colors.length;
                 countTrips++;
