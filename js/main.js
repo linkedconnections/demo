@@ -70,7 +70,7 @@ $(function(){
         }, function (stream) {
           var drawIsochrone = function (howFarHours, color, connection) {
             var secondsFromStart = (connection.arrivalTime - startTime)/1000;              
-            var howFar = (howFarHours+2)*60*60; //how far can we get in 3 hours (bug: timezone is off ny 2hours for some reason...)?
+            var howFar = (howFarHours)*60*60; //how far can we get in 3 hours
             var radius = (howFar - secondsFromStart)*1.39; //we assume 1.39m/s as a walking speed
             if (radius < 0) {
               planner.end();
