@@ -92,11 +92,11 @@ $(function(){
               connection.departureStop = stations[connection.departureStop];
               //circle for the isochrone to be drawn
               //Keep an occurence of different trips and give a new colour per trip
-              if (!trips[connection['gtfs:trip']['@id']]) {
-                trips[connection['gtfs:trip']['@id']] = countTrips%colors.length;
+              if (!trips[connection['trip']]) {
+                trips[connection['trip']] = countTrips%colors.length;
                 countTrips++;
               }
-              drawIsochrone(2,colors[trips[connection['gtfs:trip']['@id']]],connection);
+              drawIsochrone(2,colors[trips[connection['trip']]],connection);
               //polyline for the path visualization
               var polyline = new L.Polyline([connection.departureStop.point, connection.arrivalStop.point], {
                 color: '#3b6790',
